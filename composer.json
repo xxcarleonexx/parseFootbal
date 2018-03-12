@@ -1,0 +1,57 @@
+{
+  "name": "xxcarleonexx/parseFootball",
+  "description": "Parsing football scores",
+  "keywords": [
+    "parsing",
+    "football",
+    "premiere league"
+  ],
+  "type": "project",
+  "license": "Proprietary software",
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": ">2.0.5",
+    "symfony/dom-crawler": "*",
+    "clue/buzz-react": "*",
+    "symfony/css-selector": "*",
+    "fxp/composer-asset-plugin": "^1.2.0"
+  },
+  "require-dev": {
+    "yiisoft/yii2-debug": "*",
+    "yiisoft/yii2-gii": "*",
+    "yiisoft/yii2-faker": "*"
+  },
+  "config": {
+    "process-timeout": 1800
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "scripts": {
+    "post-create-project-cmd": [
+      "yii\\composer\\Installer::postCreateProject"
+    ]
+  },
+  "extra": {
+    "yii\\composer\\Installer::postCreateProject": {
+      "setPermission": [
+        {
+          "runtime": "0777",
+          "web/assets": "0777",
+          "yii": "0755"
+        }
+      ],
+      "generateCookieValidationKey": [
+        "config/web.php"
+      ]
+    },
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  }
+}
