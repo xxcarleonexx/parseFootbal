@@ -6,9 +6,8 @@ namespace app\services;
 
 use Clue\React\Buzz\Browser;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\DomCrawler\Crawler;
 
-class Parser
+abstract class Parser
 {
 
     /** @var Browser */
@@ -40,34 +39,11 @@ class Parser
      * @param $html
      * @return array
      */
-    public function extractFromHtml($html) : array
-    {
-        $crawler = new Crawler($html);
+    abstract public function extractFromHtml($html) : array;
 
-        $title = trim($crawler->filter('h1')->text());
-
-        $genres = $crawler->filter('[itemprop="genre"] a')->extract(['_text']);
-        $description = trim($crawler->filter(['itemprop="description"'])->text());
-
-        $crawler->filter('#titleDetails .txt-block')->each(
-            function(Crawler $crawler) {
-                foreach ($crawler->children() as $node) {
-                    $node->parentNode->removeChild($node);
-                }
-            }
-        );
-
-        $releaseDate = trim($crawler->filter('#titleDetails .txt-block')->eq(3)->text());
-
-        return [
-            'title' => $title,
-            'genres' => $genres,
-            'description' => $description,
-            'release_date' => $releaseDate,
-        ];
-    }
-
-
+    /**
+     * @return array
+     */
     public function getMovieData() : array
     {
         return $this->parsed;

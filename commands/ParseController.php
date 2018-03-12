@@ -3,7 +3,7 @@
 namespace app\commands;
 
 
-use app\services\Parser;
+use app\services\ImdbParser;
 use Clue\React\Buzz\Browser;
 use React\EventLoop\Factory;
 use yii\console\Controller;
@@ -18,7 +18,7 @@ class ParseController extends Controller
 
         $client = new Browser($loop);
 
-        $parser = new Parser($client);
+        $parser = new ImdbParser($client);
 
         $parser->parse([
             'http://www.imdb.com/title/tt1270797/',
