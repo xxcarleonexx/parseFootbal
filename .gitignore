@@ -7,4 +7,7 @@ protected/runtime/*
 protected/data/*.db
 themes/classic/views/
 vendor/
-.idea/
+.idea/*
+composer.lock
+composer.phar
+yii.bat

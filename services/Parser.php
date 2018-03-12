@@ -1,7 +1,7 @@
 <?php
 
 
-namespace services;
+namespace app\services;
 
 
 use Clue\React\Buzz\Browser;
@@ -22,7 +22,10 @@ class Parser
         $this->client = $client;
     }
 
-    public function parse(array $urls = []) : void
+    /**
+     * @param array $urls
+     */
+    public function parse(array $urls = [])
     {
         foreach ($urls as $url) {
             $this->client->get($url)->then(
@@ -33,6 +36,10 @@ class Parser
         }
     }
 
+    /**
+     * @param $html
+     * @return array
+     */
     public function extractFromHtml($html) : array
     {
         $crawler = new Crawler($html);

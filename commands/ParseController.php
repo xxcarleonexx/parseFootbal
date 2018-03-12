@@ -1,12 +1,11 @@
 <?php
 
+namespace app\commands;
 
-namespace controllers;
 
-
+use app\services\Parser;
 use Clue\React\Buzz\Browser;
 use React\EventLoop\Factory;
-use services\Parser;
 use yii\console\Controller;
 use yii\helpers\VarDumper;
 
